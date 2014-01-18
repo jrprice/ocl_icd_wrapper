@@ -1,3 +1,10 @@
+// ocl_icd_wrapper.c (ocl_icd_wrapper)
+// Copyright (c) 2014, James Price
+// All rights reserved.
+//
+// This program is provided under a two-clause BSD license. For full license
+// terms please see the LICENSE file distributed with this source.
+
 #include <stdio.h>
 #include <string.h>
 
