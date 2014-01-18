@@ -1259,42 +1259,57 @@ struct _cl_context
 {
     KHRicdVendorDispatch *dispatch;
     cl_context context;
+    cl_device_id *devices;
+    cl_platform_id platform;
+    cl_uint numDevices;
+    cl_context_properties *properties;
+    cl_uint numProperties;
 };
 
 struct _cl_command_queue
 {
     KHRicdVendorDispatch *dispatch;
     cl_command_queue queue;
+    cl_context context;
+    cl_device_id device;
 };
 
 struct _cl_mem
 {
     KHRicdVendorDispatch *dispatch;
     cl_mem mem;
+    cl_context context;
+    cl_mem parent;
+    cl_mem imgBuffer;
 };
 
 struct _cl_program
 {
     KHRicdVendorDispatch *dispatch;
     cl_program program;
+    cl_context context;
 };
 
 struct _cl_kernel
 {
     KHRicdVendorDispatch *dispatch;
     cl_kernel kernel;
+    cl_program program;
 };
 
 struct _cl_event
 {
     KHRicdVendorDispatch *dispatch;
     cl_event event;
+    cl_context context;
+    cl_command_queue queue;
 };
 
 struct _cl_sampler
 {
     KHRicdVendorDispatch *dispatch;
     cl_sampler sampler;
+    cl_context context;
 };
 
 #endif // _ICD_DISPATCH_H_
