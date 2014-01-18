@@ -4,7 +4,7 @@
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software source and associated documentation files (the "Materials"),
  * to use, copy, modify and compile the Materials to create a binary under the
- * following terms and conditions: 
+ * following terms and conditions:
  *
  * 1. The Materials shall NOT be distributed to any third party;
  *
@@ -34,8 +34,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE MATERIALS OR THE USE OR OTHER DEALINGS IN
  * THE MATERIALS.
- * 
- * OpenCL is a trademark of Apple Inc. used under license by Khronos.  
+ *
+ * OpenCL is a trademark of Apple Inc. used under license by Khronos.
  */
 
 #ifndef _ICD_DISPATCH_H_
@@ -87,24 +87,24 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetPlatformIDs)(
                  cl_uint *        num_platforms) CL_API_SUFFIX__VERSION_1_0;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetPlatformInfo)(
-    cl_platform_id   platform, 
+    cl_platform_id   platform,
     cl_platform_info param_name,
-    size_t           param_value_size, 
+    size_t           param_value_size,
     void *           param_value,
     size_t *         param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
 
 // Device APIs
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetDeviceIDs)(
     cl_platform_id   platform,
-    cl_device_type   device_type, 
-    cl_uint          num_entries, 
-    cl_device_id *   devices, 
+    cl_device_type   device_type,
+    cl_uint          num_entries,
+    cl_device_id *   devices,
     cl_uint *        num_devices) CL_API_SUFFIX__VERSION_1_0;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetDeviceInfo)(
     cl_device_id    device,
-    cl_device_info  param_name, 
-    size_t          param_value_size, 
+    cl_device_info  param_name,
+    size_t          param_value_size,
     void *          param_value,
     size_t *        param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
 
@@ -121,7 +121,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL * KHRpfn_clRetainDevice)(
 typedef CL_API_ENTRY cl_int (CL_API_CALL * KHRpfn_clReleaseDevice)(
     cl_device_id     device) CL_API_SUFFIX__VERSION_1_2;
 
-// Context APIs  
+// Context APIs
 typedef CL_API_ENTRY cl_context (CL_API_CALL *KHRpfn_clCreateContext)(
     const cl_context_properties * properties,
     cl_uint                 num_devices,
@@ -144,16 +144,16 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clReleaseContext)(
     cl_context context) CL_API_SUFFIX__VERSION_1_0;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetContextInfo)(
-    cl_context         context, 
-    cl_context_info    param_name, 
-    size_t             param_value_size, 
-    void *             param_value, 
+    cl_context         context,
+    cl_context_info    param_name,
+    size_t             param_value_size,
+    void *             param_value,
     size_t *           param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
 
 // Command Queue APIs
 typedef CL_API_ENTRY cl_command_queue (CL_API_CALL *KHRpfn_clCreateCommandQueue)(
-    cl_context                     context, 
-    cl_device_id                   device, 
+    cl_context                     context,
+    cl_device_id                   device,
     cl_command_queue_properties    properties,
     cl_int *                       errcode_ret) CL_API_SUFFIX__VERSION_1_0;
 
@@ -197,17 +197,17 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetSupportedImageFormats)(
     cl_uint              num_entries,
     cl_image_format *    image_formats,
     cl_uint *            num_image_formats) CL_API_SUFFIX__VERSION_1_0;
-                                    
+
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetMemObjectInfo)(
     cl_mem           memobj,
-    cl_mem_info      param_name, 
+    cl_mem_info      param_name,
     size_t           param_value_size,
     void *           param_value,
     size_t *         param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetImageInfo)(
     cl_mem           image,
-    cl_image_info    param_name, 
+    cl_image_info    param_name,
     size_t           param_value_size,
     void *           param_value,
     size_t *         param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
@@ -215,8 +215,8 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetImageInfo)(
 // Sampler APIs
 typedef CL_API_ENTRY cl_sampler (CL_API_CALL *KHRpfn_clCreateSampler)(
     cl_context          context,
-    cl_bool             normalized_coords, 
-    cl_addressing_mode  addressing_mode, 
+    cl_bool             normalized_coords,
+    cl_addressing_mode  addressing_mode,
     cl_filter_mode      filter_mode,
     cl_int *            errcode_ret) CL_API_SUFFIX__VERSION_1_0;
 
@@ -230,7 +230,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetSamplerInfo)(
     size_t             param_value_size,
     void *             param_value,
     size_t *           param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
-                            
+
 // Program Object APIs
 typedef CL_API_ENTRY cl_program (CL_API_CALL *KHRpfn_clCreateProgramWithSource)(
     cl_context        context,
@@ -263,7 +263,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clBuildProgram)(
     cl_program           program,
     cl_uint              num_devices,
     const cl_device_id * device_list,
-    const char *         options, 
+    const char *         options,
     void (CL_CALLBACK *pfn_notify)(cl_program program, void * user_data),
     void *               user_data) CL_API_SUFFIX__VERSION_1_0;
 
@@ -306,7 +306,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetProgramBuildInfo)(
     size_t                param_value_size,
     void *                param_value,
     size_t *              param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
-                            
+
 // Kernel Object APIs
 typedef CL_API_ENTRY cl_kernel (CL_API_CALL *KHRpfn_clCreateKernel)(
     cl_program      program,
@@ -363,7 +363,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetEventInfo)(
     size_t           param_value_size,
     void *           param_value,
     size_t *         param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
-                            
+
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clRetainEvent)(cl_event event) CL_API_SUFFIX__VERSION_1_0;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clReleaseEvent)(cl_event event) CL_API_SUFFIX__VERSION_1_0;
@@ -375,7 +375,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetEventProfilingInfo)(
     size_t              param_value_size,
     void *              param_value,
     size_t *            param_value_size_ret) CL_API_SUFFIX__VERSION_1_0;
-                                
+
 // Flush and Finish APIs
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clFlush)(cl_command_queue command_queue) CL_API_SUFFIX__VERSION_1_0;
 
@@ -387,7 +387,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueReadBuffer)(
     cl_mem              buffer,
     cl_bool             blocking_read,
     size_t              offset,
-    size_t              cb, 
+    size_t              cb,
     void *              ptr,
     cl_uint             num_events_in_wait_list,
     const cl_event *    event_wait_list,
@@ -398,7 +398,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueReadBufferRect)(
     cl_mem              buffer,
     cl_bool             blocking_read,
     const size_t *      buffer_origin,
-    const size_t *      host_origin, 
+    const size_t *      host_origin,
     const size_t *      region,
     size_t              buffer_row_pitch,
     size_t              buffer_slice_pitch,
@@ -408,29 +408,29 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueReadBufferRect)(
     cl_uint             num_events_in_wait_list,
     const cl_event *    event_wait_list,
     cl_event *          event) CL_API_SUFFIX__VERSION_1_1;
-                            
+
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueWriteBuffer)(
-    cl_command_queue   command_queue, 
-    cl_mem             buffer, 
-    cl_bool            blocking_write, 
-    size_t             offset, 
-    size_t             cb, 
-    const void *       ptr, 
-    cl_uint            num_events_in_wait_list, 
-    const cl_event *   event_wait_list, 
+    cl_command_queue   command_queue,
+    cl_mem             buffer,
+    cl_bool            blocking_write,
+    size_t             offset,
+    size_t             cb,
+    const void *       ptr,
+    cl_uint            num_events_in_wait_list,
+    const cl_event *   event_wait_list,
     cl_event *         event) CL_API_SUFFIX__VERSION_1_0;
-                            
+
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueWriteBufferRect)(
     cl_command_queue    command_queue,
     cl_mem              buffer,
     cl_bool             blocking_read,
     const size_t *      buffer_origin,
-    const size_t *      host_origin, 
+    const size_t *      host_origin,
     const size_t *      region,
     size_t              buffer_row_pitch,
     size_t              buffer_slice_pitch,
     size_t              host_row_pitch,
-    size_t              host_slice_pitch,    
+    size_t              host_slice_pitch,
     const void *        ptr,
     cl_uint             num_events_in_wait_list,
     const cl_event *    event_wait_list,
@@ -448,20 +448,20 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueFillBuffer)(
     cl_event *         event) CL_API_SUFFIX__VERSION_1_2;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyBuffer)(
-    cl_command_queue    command_queue, 
+    cl_command_queue    command_queue,
     cl_mem              src_buffer,
-    cl_mem              dst_buffer, 
+    cl_mem              dst_buffer,
     size_t              src_offset,
     size_t              dst_offset,
-    size_t              cb, 
+    size_t              cb,
     cl_uint             num_events_in_wait_list,
     const cl_event *    event_wait_list,
     cl_event *          event) CL_API_SUFFIX__VERSION_1_0;
-                            
+
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyBufferRect)(
-    cl_command_queue    command_queue, 
+    cl_command_queue    command_queue,
     cl_mem              src_buffer,
-    cl_mem              dst_buffer, 
+    cl_mem              dst_buffer,
     const size_t *      src_origin,
     const size_t *      dst_origin,
     const size_t *      region,
@@ -476,11 +476,11 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyBufferRect)(
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueReadImage)(
     cl_command_queue     command_queue,
     cl_mem               image,
-    cl_bool              blocking_read, 
+    cl_bool              blocking_read,
     const size_t *       origin,
     const size_t *       region,
     size_t               row_pitch,
-    size_t               slice_pitch, 
+    size_t               slice_pitch,
     void *               ptr,
     cl_uint              num_events_in_wait_list,
     const cl_event *     event_wait_list,
@@ -489,11 +489,11 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueReadImage)(
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueWriteImage)(
     cl_command_queue    command_queue,
     cl_mem              image,
-    cl_bool             blocking_write, 
+    cl_bool             blocking_write,
     const size_t *      origin,
     const size_t *      region,
     size_t              input_row_pitch,
-    size_t              input_slice_pitch, 
+    size_t              input_slice_pitch,
     const void *        ptr,
     cl_uint             num_events_in_wait_list,
     const cl_event *    event_wait_list,
@@ -512,10 +512,10 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueFillImage)(
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyImage)(
     cl_command_queue     command_queue,
     cl_mem               src_image,
-    cl_mem               dst_image, 
+    cl_mem               dst_image,
     const size_t *       src_origin,
     const size_t *       dst_origin,
-    const size_t *       region, 
+    const size_t *       region,
     cl_uint              num_events_in_wait_list,
     const cl_event *     event_wait_list,
     cl_event *           event) CL_API_SUFFIX__VERSION_1_0;
@@ -523,9 +523,9 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyImage)(
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyImageToBuffer)(
     cl_command_queue command_queue,
     cl_mem           src_image,
-    cl_mem           dst_buffer, 
+    cl_mem           dst_buffer,
     const size_t *   src_origin,
-    const size_t *   region, 
+    const size_t *   region,
     size_t           dst_offset,
     cl_uint          num_events_in_wait_list,
     const cl_event * event_wait_list,
@@ -534,10 +534,10 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyImageToBuffer)(
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyBufferToImage)(
     cl_command_queue command_queue,
     cl_mem           src_buffer,
-    cl_mem           dst_image, 
+    cl_mem           dst_image,
     size_t           src_offset,
     const size_t *   dst_origin,
-    const size_t *   region, 
+    const size_t *   region,
     cl_uint          num_events_in_wait_list,
     const cl_event * event_wait_list,
     cl_event *       event) CL_API_SUFFIX__VERSION_1_0;
@@ -545,7 +545,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueCopyBufferToImage)(
 typedef CL_API_ENTRY void * (CL_API_CALL *KHRpfn_clEnqueueMapBuffer)(
     cl_command_queue command_queue,
     cl_mem           buffer,
-    cl_bool          blocking_map, 
+    cl_bool          blocking_map,
     cl_map_flags     map_flags,
     size_t           offset,
     size_t           cb,
@@ -556,9 +556,9 @@ typedef CL_API_ENTRY void * (CL_API_CALL *KHRpfn_clEnqueueMapBuffer)(
 
 typedef CL_API_ENTRY void * (CL_API_CALL *KHRpfn_clEnqueueMapImage)(
     cl_command_queue  command_queue,
-    cl_mem            image, 
-    cl_bool           blocking_map, 
-    cl_map_flags      map_flags, 
+    cl_mem            image,
+    cl_bool           blocking_map,
+    cl_map_flags      map_flags,
     const size_t *    origin,
     const size_t *    region,
     size_t *          image_row_pitch,
@@ -607,7 +607,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueNativeKernel)(
     cl_command_queue  command_queue,
     void (CL_CALLBACK * user_func)(void *),
     void *            args,
-    size_t            cb_args, 
+    size_t            cb_args,
     cl_uint           num_mem_objects,
     const cl_mem *    mem_list,
     const void **     args_mem_loc,
@@ -634,7 +634,7 @@ typedef CL_API_ENTRY void * (CL_API_CALL *KHRpfn_clGetExtensionFunctionAddressFo
 // Deprecated APIs
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clSetCommandQueueProperty)(
     cl_command_queue              command_queue,
-    cl_command_queue_properties   properties, 
+    cl_command_queue_properties   properties,
     cl_bool                       enable,
     cl_command_queue_properties * old_properties) CL_EXT_SUFFIX__VERSION_1_0_DEPRECATED;
 
@@ -644,19 +644,19 @@ typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateImage2D)(
     const cl_image_format * image_format,
     size_t                  image_width,
     size_t                  image_height,
-    size_t                  image_row_pitch, 
+    size_t                  image_row_pitch,
     void *                  host_ptr,
     cl_int *                errcode_ret) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
-                        
+
 typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateImage3D)(
     cl_context              context,
     cl_mem_flags            flags,
     const cl_image_format * image_format,
-    size_t                  image_width, 
+    size_t                  image_width,
     size_t                  image_height,
-    size_t                  image_depth, 
-    size_t                  image_row_pitch, 
-    size_t                  image_slice_pitch, 
+    size_t                  image_depth,
+    size_t                  image_row_pitch,
+    size_t                  image_slice_pitch,
     void *                  host_ptr,
     cl_int *                errcode_ret) CL_EXT_SUFFIX__VERSION_1_1_DEPRECATED;
 
@@ -716,7 +716,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetGLObjectInfo)(
     cl_mem               memobj,
     cl_gl_object_type *  gl_object_type,
     GLuint *             gl_object_name) CL_API_SUFFIX__VERSION_1_0;
-                  
+
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetGLTextureInfo)(
     cl_mem               memobj,
     cl_gl_texture_info   param_name,
@@ -764,8 +764,8 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clGetDeviceIDsFromD3D10KHR)(
     cl_d3d10_device_source_khr d3d_device_source,
     void *                     d3d_object,
     cl_d3d10_device_set_khr    d3d_device_set,
-    cl_uint                    num_entries, 
-    cl_device_id *             devices, 
+    cl_uint                    num_entries,
+    cl_device_id *             devices,
     cl_uint *                  num_devices) CL_API_SUFFIX__VERSION_1_0;
 
 typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateFromD3D10BufferKHR)(
@@ -810,11 +810,11 @@ clGetDeviceIDsFromD3D10KHR(
     cl_d3d10_device_source_khr d3d_device_source,
     void *d3d_object,
     cl_d3d10_device_set_khr d3d_device_set,
-    cl_uint num_entries, 
-    cl_device_id *devices, 
+    cl_uint num_entries,
+    cl_device_id *devices,
     cl_uint *num_devices);
- 
-extern CL_API_ENTRY cl_mem CL_API_CALL 
+
+extern CL_API_ENTRY cl_mem CL_API_CALL
 clCreateFromD3D10BufferKHR(
     cl_context context,
     cl_mem_flags flags,
@@ -829,7 +829,7 @@ clCreateFromD3D10Texture2DKHR(
     UINT              subresource,
     cl_int *          errcode_ret);
 
-extern CL_API_ENTRY cl_mem CL_API_CALL 
+extern CL_API_ENTRY cl_mem CL_API_CALL
 clCreateFromD3D10Texture3DKHR(
     cl_context context,
     cl_mem_flags flags,
@@ -837,7 +837,7 @@ clCreateFromD3D10Texture3DKHR(
     UINT subresource,
     cl_int *errcode_ret);
 
-extern CL_API_ENTRY cl_int CL_API_CALL 
+extern CL_API_ENTRY cl_int CL_API_CALL
 clEnqueueAcquireD3D10ObjectsKHR(
     cl_command_queue command_queue,
     cl_uint num_objects,
@@ -846,7 +846,7 @@ clEnqueueAcquireD3D10ObjectsKHR(
     const cl_event *event_wait_list,
     cl_event *event);
 
-extern CL_API_ENTRY cl_int CL_API_CALL 
+extern CL_API_ENTRY cl_int CL_API_CALL
 clEnqueueReleaseD3D10ObjectsKHR(
     cl_command_queue command_queue,
     cl_uint num_objects,
@@ -917,7 +917,7 @@ typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateFromDX9MediaSurfaceKHR)
     cl_mem_flags                  flags,
     cl_dx9_media_adapter_type_khr adapter_type,
     void *                        surface_info,
-    cl_uint                       plane,                                                                          
+    cl_uint                       plane,
     cl_int *                      errcode_ret) CL_API_SUFFIX__VERSION_1_2;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clEnqueueAcquireDX9MediaSurfacesKHR)(
@@ -1006,7 +1006,7 @@ clCreateFromDX9MediaSurfaceKHR(
     cl_mem_flags                  flags,
     cl_dx9_media_adapter_type_khr adapter_type,
     void *                        surface_info,
-    cl_uint                       plane,                                                                          
+    cl_uint                       plane,
     cl_int *                      errcode_ret);
 
 extern CL_API_ENTRY cl_int CL_API_CALL
@@ -1069,8 +1069,8 @@ typedef CL_API_ENTRY cl_mem (CL_API_CALL *KHRpfn_clCreateSubBuffer)(
     cl_int *                 /* errcode_ret */) CL_API_SUFFIX__VERSION_1_1;
 
 typedef CL_API_ENTRY cl_int (CL_API_CALL *KHRpfn_clSetMemObjectDestructorCallback)(
-    cl_mem /* memobj */, 
-    void (CL_CALLBACK * /*pfn_notify*/)( cl_mem /* memobj */, void* /*user_data*/), 
+    cl_mem /* memobj */,
+    void (CL_CALLBACK * /*pfn_notify*/)( cl_mem /* memobj */, void* /*user_data*/),
     void * /*user_data */ ) CL_API_SUFFIX__VERSION_1_1;
 
 typedef CL_API_ENTRY cl_event (CL_API_CALL *KHRpfn_clCreateUserEvent)(
@@ -1098,7 +1098,7 @@ typedef CL_API_ENTRY cl_int (CL_API_CALL * KHRpfn_clReleaseDeviceEXT)(
  *
  * vendor dispatch table structure
  *
- * note that the types in the structure KHRicdVendorDispatch mirror the function 
+ * note that the types in the structure KHRicdVendorDispatch mirror the function
  * names listed in the string table khrIcdVendorDispatchFunctionNames
  *
  */
@@ -1245,46 +1245,56 @@ struct KHRicdVendorDispatchRec
 struct _cl_platform_id
 {
     KHRicdVendorDispatch *dispatch;
+    cl_platform_id platform;
 };
 
 struct _cl_device_id
 {
     KHRicdVendorDispatch *dispatch;
+    cl_device_id device;
+    cl_platform_id platform;
 };
 
 struct _cl_context
 {
     KHRicdVendorDispatch *dispatch;
+    cl_context context;
 };
 
 struct _cl_command_queue
 {
     KHRicdVendorDispatch *dispatch;
+    cl_command_queue queue;
 };
 
 struct _cl_mem
 {
     KHRicdVendorDispatch *dispatch;
+    cl_mem mem;
 };
 
 struct _cl_program
 {
     KHRicdVendorDispatch *dispatch;
+    cl_program program;
 };
 
 struct _cl_kernel
 {
     KHRicdVendorDispatch *dispatch;
+    cl_kernel kernel;
 };
 
 struct _cl_event
 {
     KHRicdVendorDispatch *dispatch;
+    cl_event event;
 };
 
 struct _cl_sampler
 {
     KHRicdVendorDispatch *dispatch;
+    cl_sampler sampler;
 };
 
 #endif // _ICD_DISPATCH_H_
