@@ -112,24 +112,30 @@ _clGetDeviceIDs_(cl_platform_id   platform,
     _devices = malloc(num_entries * sizeof(cl_device_id));
   }
 
+  cl_uint _num_devices = 0;
   cl_int err = clGetDeviceIDs(
     platform->platform,
     device_type,
     num_entries,
     _devices,
-    num_devices
+    &_num_devices
   );
 
   if (devices && err == CL_SUCCESS)
   {
     // Create wrapper object for each real device
-    for (int i = 0; i < *num_devices && i < num_entries; i++)
+    for (int i = 0; i < _num_devices && i < num_entries; i++)
     {
       devices[i] = malloc(sizeof(struct _cl_device_id));
       devices[i]->dispatch = platform->dispatch;
       devices[i]->platform = platform;
       devices[i]->device = _devices[i];
     }
+  }
+
+  if (num_devices)
+  {
+    *num_devices = _num_devices;
   }
 
   return err;
