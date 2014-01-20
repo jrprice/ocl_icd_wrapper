@@ -1565,6 +1565,21 @@ cl_event* createEventList(cl_uint num, const cl_event *list)
   return result;
 }
 
+// Utility function to convert mem list into real mem list
+cl_mem* createMemList(cl_uint num, const cl_mem *list)
+{
+  cl_mem *result = NULL;
+  if (num > 0 && list)
+  {
+    result = malloc(num*sizeof(cl_mem));
+    for (int i = 0; i < num; i++)
+    {
+      result[i] = list[i]->mem;
+    }
+  }
+  return result;
+}
+
 CL_API_ENTRY cl_int CL_API_CALL
 _clWaitForEvents_(cl_uint              num_events ,
                   const cl_event *     event_list) CL_API_SUFFIX__VERSION_1_0
@@ -2942,8 +2957,32 @@ _clCreateFromGLBuffer_(cl_context      context ,
                        cl_GLuint       bufret_mem ,
                        int *           errcode_ret ) CL_API_SUFFIX__VERSION_1_0
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  // Call original function
+  cl_int err;
+  cl_mem _buffer = clCreateFromGLBuffer(
+    context->context,
+    flags,
+    bufret_mem,
+    &err
+  );
+
+  // Create wrapper object
+  cl_mem buffer = NULL;
+  if (err == CL_SUCCESS)
+  {
+    buffer = malloc(sizeof(struct _cl_mem));
+    buffer->dispatch = context->dispatch;
+    buffer->mem = _buffer;
+    buffer->context = context;
+    buffer->parent = NULL;
+    buffer->imgBuffer = NULL;
+  }
+
+  if (errcode_ret)
+  {
+    *errcode_ret = err;
+  }
+  return buffer;
 }
 
 CL_API_ENTRY cl_mem CL_API_CALL
@@ -2954,8 +2993,34 @@ _clCreateFromGLTexture_(cl_context       context ,
                         cl_GLuint        texture ,
                         cl_int *         errcode_ret ) CL_API_SUFFIX__VERSION_1_2
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  // Call original function
+  cl_int err;
+  cl_mem _buffer = clCreateFromGLTexture(
+    context->context,
+    flags,
+    target,
+    miplevel,
+    texture,
+    &err
+  );
+
+  // Create wrapper object
+  cl_mem buffer = NULL;
+  if (err == CL_SUCCESS)
+  {
+    buffer = malloc(sizeof(struct _cl_mem));
+    buffer->dispatch = context->dispatch;
+    buffer->mem = _buffer;
+    buffer->context = context;
+    buffer->parent = NULL;
+    buffer->imgBuffer = NULL;
+  }
+
+  if (errcode_ret)
+  {
+    *errcode_ret = err;
+  }
+  return buffer;
 }
 
 CL_API_ENTRY cl_mem CL_API_CALL
@@ -2966,8 +3031,34 @@ _clCreateFromGLTexture2D_(cl_context       context,
                           cl_GLuint        texture,
                           cl_int *         errcode_ret ) CL_API_SUFFIX__VERSION_1_0
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  // Call original function
+  cl_int err;
+  cl_mem _buffer = clCreateFromGLTexture2D(
+    context->context,
+    flags,
+    target,
+    miplevel,
+    texture,
+    &err
+  );
+
+  // Create wrapper object
+  cl_mem buffer = NULL;
+  if (err == CL_SUCCESS)
+  {
+    buffer = malloc(sizeof(struct _cl_mem));
+    buffer->dispatch = context->dispatch;
+    buffer->mem = _buffer;
+    buffer->context = context;
+    buffer->parent = NULL;
+    buffer->imgBuffer = NULL;
+  }
+
+  if (errcode_ret)
+  {
+    *errcode_ret = err;
+  }
+  return buffer;
 }
 
 CL_API_ENTRY cl_mem CL_API_CALL
@@ -2979,8 +3070,34 @@ _clCreateFromGLTexture3D_(cl_context       context,
                           cl_int *         errcode_ret ) CL_API_SUFFIX__VERSION_1_0
 
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  // Call original function
+  cl_int err;
+  cl_mem _buffer = clCreateFromGLTexture3D(
+    context->context,
+    flags,
+    target,
+    miplevel,
+    texture,
+    &err
+  );
+
+  // Create wrapper object
+  cl_mem buffer = NULL;
+  if (err == CL_SUCCESS)
+  {
+    buffer = malloc(sizeof(struct _cl_mem));
+    buffer->dispatch = context->dispatch;
+    buffer->mem = _buffer;
+    buffer->context = context;
+    buffer->parent = NULL;
+    buffer->imgBuffer = NULL;
+  }
+
+  if (errcode_ret)
+  {
+    *errcode_ret = err;
+  }
+  return buffer;
 }
 
 CL_API_ENTRY cl_mem CL_API_CALL
@@ -2989,8 +3106,32 @@ _clCreateFromGLRenderbuffer_(cl_context    context,
                              cl_GLuint     renderbuffer,
                              cl_int *      errcode_ret ) CL_API_SUFFIX__VERSION_1_0
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  // Call original function
+  cl_int err;
+  cl_mem _buffer = clCreateFromGLRenderbuffer(
+    context->context,
+    flags,
+    renderbuffer,
+    &err
+  );
+
+  // Create wrapper object
+  cl_mem buffer = NULL;
+  if (err == CL_SUCCESS)
+  {
+    buffer = malloc(sizeof(struct _cl_mem));
+    buffer->dispatch = context->dispatch;
+    buffer->mem = _buffer;
+    buffer->context = context;
+    buffer->parent = NULL;
+    buffer->imgBuffer = NULL;
+  }
+
+  if (errcode_ret)
+  {
+    *errcode_ret = err;
+  }
+  return buffer;
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
@@ -2998,7 +3139,11 @@ _clGetGLObjectInfo_(cl_mem                 memobj,
                     cl_gl_object_type *    gl_object_type,
                     cl_GLuint *            gl_object_name ) CL_API_SUFFIX__VERSION_1_0
 {
-  return CL_INVALID_OPERATION;
+  return clGetGLObjectInfo(
+    memobj->mem,
+    gl_object_type,
+    gl_object_name
+  );
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
@@ -3008,7 +3153,13 @@ _clGetGLTextureInfo_(cl_mem                memobj,
                      void *                param_value,
                      size_t *              param_value_size_ret ) CL_API_SUFFIX__VERSION_1_0
 {
-  return CL_INVALID_OPERATION;
+  return clGetGLTextureInfo(
+    memobj->mem,
+    param_name,
+    param_value_size,
+    param_value,
+    param_value_size_ret
+  );
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
@@ -3019,7 +3170,50 @@ _clEnqueueAcquireGLObjects_(cl_command_queue       command_queue,
                             const cl_event *       event_wait_list,
                             cl_event *             event ) CL_API_SUFFIX__VERSION_1_0
 {
-  return CL_INVALID_OPERATION;
+  // Initialize event arguments
+  cl_event *_wait_list = createEventList(
+    num_events_in_wait_list,
+    event_wait_list
+  );
+  cl_event *_event = NULL;
+  if (event)
+  {
+    _event = malloc(sizeof(cl_event));
+  }
+
+  // Convert mem object list to real objects
+  cl_mem *_objects = createMemList(num_objects, mem_objects);
+
+  // Call original function
+  cl_int err = clEnqueueAcquireGLObjects(
+    command_queue->queue,
+    num_objects,
+    _objects,
+    num_events_in_wait_list,
+    _wait_list,
+    _event
+  );
+  if (_objects)
+  {
+    free(_objects);
+  }
+
+  // Create wrapper object
+  if (err == CL_SUCCESS && event)
+  {
+    *event = malloc(sizeof(struct _cl_event));
+    (*event)->dispatch = command_queue->dispatch;
+    (*event)->event = *_event;
+    (*event)->context = command_queue->context;
+    (*event)->queue = command_queue;
+    free(_event);
+  }
+  if (_wait_list)
+  {
+    free(_wait_list);
+  }
+
+  return err;
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
@@ -3031,7 +3225,50 @@ _clEnqueueReleaseGLObjects_(cl_command_queue       command_queue,
                             cl_event *             event ) CL_API_SUFFIX__VERSION_1_0
 
 {
-  return CL_INVALID_OPERATION;
+  // Initialize event arguments
+  cl_event *_wait_list = createEventList(
+    num_events_in_wait_list,
+    event_wait_list
+  );
+  cl_event *_event = NULL;
+  if (event)
+  {
+    _event = malloc(sizeof(cl_event));
+  }
+
+  // Convert mem object list to real objects
+  cl_mem *_objects = createMemList(num_objects, mem_objects);
+
+  // Call original function
+  cl_int err = clEnqueueReleaseGLObjects(
+    command_queue->queue,
+    num_objects,
+    _objects,
+    num_events_in_wait_list,
+    _wait_list,
+    _event
+  );
+  if (_objects)
+  {
+    free(_objects);
+  }
+
+  // Create wrapper object
+  if (err == CL_SUCCESS && event)
+  {
+    *event = malloc(sizeof(struct _cl_event));
+    (*event)->dispatch = command_queue->dispatch;
+    (*event)->event = *_event;
+    (*event)->context = command_queue->context;
+    (*event)->queue = command_queue;
+    free(_event);
+  }
+  if (_wait_list)
+  {
+    free(_wait_list);
+  }
+
+  return err;
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
@@ -3041,7 +3278,19 @@ _clGetGLContextInfoKHR_(const cl_context_properties *  properties,
                         void *                         param_value,
                         size_t *                       param_value_size_ret ) CL_API_SUFFIX__VERSION_1_0
 {
-  return CL_INVALID_OPERATION;
+  cl_context_properties *_properties = createContextProperties(properties);
+  cl_int err = clGetGLContextInfoKHR(
+    _properties,
+    param_name,
+    param_value_size,
+    param_value,
+    param_value_size_ret
+  );
+  if (_properties)
+  {
+    free(_properties);
+  }
+  return err;
 }
 
 CL_API_ENTRY cl_event CL_API_CALL
@@ -3050,8 +3299,30 @@ _clCreateEventFromGLsyncKHR_(cl_context            context ,
                              cl_int *              errcode_ret ) //CL_EXT_SUFFIX__VERSION_1_1
 
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  // Call original function
+  cl_int err;
+  cl_event _event = clCreateEventFromGLsyncKHR(
+    context->context,
+    cl_GLsync,
+    &err
+  );
+
+  // Create wrapper object
+  cl_event event = NULL;
+  if (err == CL_SUCCESS)
+  {
+    event = malloc(sizeof(struct _cl_event));
+    event->dispatch = context->dispatch;
+    event->event = _event;
+    event->context = context;
+    event->queue = NULL;
+  }
+
+  if (errcode_ret)
+  {
+    *errcode_ret = err;
+  }
+  return event;
 }
 
 KHRicdVendorDispatch* createDispatchTable()
