@@ -723,8 +723,27 @@ _clCreateImage2D_(cl_context              context ,
                   void *                  host_ptr ,
                   cl_int *                errcode_ret) CL_API_SUFFIX__VERSION_1_0
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  cl_image_desc desc =
+  {
+    CL_MEM_OBJECT_IMAGE2D,
+    image_width,
+    image_height,
+    1,
+    1,
+    image_row_pitch,
+    0,
+    0,
+    0,
+    NULL
+  };
+
+  return _clCreateImage_(
+    context,
+    flags,
+    image_format,
+    &desc,
+    host_ptr,
+    errcode_ret);
 }
 
 CL_API_ENTRY cl_mem CL_API_CALL
@@ -739,8 +758,27 @@ _clCreateImage3D_(cl_context              context,
                   void *                  host_ptr ,
                   cl_int *                errcode_ret) CL_API_SUFFIX__VERSION_1_0
 {
-  *errcode_ret = CL_INVALID_OPERATION;
-  return NULL;
+  cl_image_desc desc =
+  {
+    CL_MEM_OBJECT_IMAGE3D,
+    image_width,
+    image_height,
+    image_depth,
+    1,
+    image_row_pitch,
+    image_slice_pitch,
+    0,
+    0,
+    NULL
+  };
+
+  return _clCreateImage_(
+    context,
+    flags,
+    image_format,
+    &desc,
+    host_ptr,
+    errcode_ret);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL
